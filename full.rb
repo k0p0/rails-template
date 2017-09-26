@@ -189,6 +189,8 @@ file 'app/views/shared/_footer.html.erb', <<-HTML
 </div>
 HTML
 
+run 'curl -L https://raw.githubusercontent.com/k0p0/stylesheets/master/logo.png > app/assets/images/logo.png'
+run 'curl -L https://raw.githubusercontent.com/k0p0/stylesheets/master/profil.png > app/assets/images/profil.png'
 
 # Generators
 ########################################
