@@ -26,8 +26,6 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
-
-
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -58,8 +56,11 @@ end
 ########################################
 run 'rm -rf app/assets/stylesheets'
 run 'rm -rf vendor'
-run 'curl -L https://github.com/k0p0/rails-template/archive/master.zip > stylesheets.zip'
-run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-template-master app/assets/stylesheets'
+run 'curl -L https://github.com/k0p0/rails-stylesheets/archive/master.zip > stylesheets.zip'
+run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-stylesheets-master app/assets/stylesheets'
+
+run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/logo.png > app/assets/images/logo.png'
+run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/profil.png > app/assets/images/profil.png'
 
 run 'rm app/assets/javascripts/application.js'
 file 'app/assets/javascripts/application.js', <<-JS
@@ -86,8 +87,8 @@ file 'app/views/layouts/application.html.erb', <<-HTML
 
     <title>TODO</title>
     <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
-    <%#= stylesheet_link_tag 'application', media: 'all' %>
+    <%#= action_cable_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
     <%= render 'shared/navbar' %>
@@ -188,9 +189,6 @@ file 'app/views/shared/_footer.html.erb', <<-HTML
   </div>
 </div>
 HTML
-
-run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/logo.png > app/assets/images/logo.png'
-run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/profil.png > app/assets/images/profil.png'
 
 # Generators
 ########################################
