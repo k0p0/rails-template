@@ -86,7 +86,7 @@ file 'app/views/layouts/application.html.erb', <<-HTML
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>TODO</title>
+    <title>MY COMPANY</title>
     <%= csrf_meta_tags %>
     <%#= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -94,7 +94,13 @@ file 'app/views/layouts/application.html.erb', <<-HTML
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="container">
+      <div class="row">
+	      <div class="col-xs-12 col-sm-6 col-md-3">
+          <%= yield %>
+         </div>
+      </div>
+    </div>
     <%= javascript_include_tag 'application' %>
     <%= render 'shared/footer' %>
   </body>
@@ -179,17 +185,24 @@ HTML
 file 'app/views/shared/_footer.html.erb', <<-HTML
 <div class="footer">
   <div class="footer-links">
-    <a href="#"><i class="fa fa-github"></i></a>
-    <a href="#"><i class="fa fa-instagram"></i></a>
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-linkedin"></i></a>
+    <ul class="list-inline text-center">
+      <li> <a href="#"><i class="fa fa-copyright"></i>  My Company</a><%= Date.today.year %></li>
+      <li>  |  </li>
+      <li> <a href="#"><i class="fa fa-bank"></i>  Legal terms</a> </li>
+      <li>  |  </li>
+      <li> <a href="#"><i class="fa fa-lock"></i>  Access</a> </li>
+      <li>  |  </li>
+      <li> <a href="tel:+33000000000"><i class="fa fa-phone"></i>  +33000000000</a> </li>
+      <li>  |  </li>
+      <li> <a href="mailto:contact@abc.xyz"><i class="fa fa-envelope-o"></i>  contact@abc.xyz</a> </li>
+      <li>  |  </li>
+      <li> <a href="#"><i class="fa fa-github"></i></a> </li>
+      <li> <a href="#"><i class="fa fa-linkedin"></i></a> </li>
+      <li> <a href="#"><i class="fa fa-facebook"></i></a> </li>
+      <li> <a href="#"><i class="fa fa-twitter"></i></a> </li>
+    </ul>
   </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fa fa-heart"></i>.
-  </div>
-</div>
-HTML
+</div>HTML
 
 # Generators
 ########################################
