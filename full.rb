@@ -186,7 +186,7 @@ file 'app/views/shared/_footer.html.erb', <<-HTML
 <div class="footer">
   <div class="footer-links">
     <ul class="list-inline text-center">
-      <li> <a href="#"><i class="fa fa-copyright"></i>  My Company</a><%= Date.today.year %></li>
+      <li> <%= Date.today.year %>  <a href="#"><i class="fa fa-copyright"></i>  My Company</a></li>
       <li>  |  </li>
       <li> <a href="#"><i class="fa fa-bank"></i>  Legal terms</a> </li>
       <li>  |  </li>
