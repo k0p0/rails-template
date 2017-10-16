@@ -62,6 +62,7 @@ run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/
 
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/logo.png > app/assets/images/logo.png'
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/profil.png > app/assets/images/profil.png'
+run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/home.jpg > app/assets/images/home.jpg'
 
 run 'rm app/assets/javascripts/application.js'
 file 'app/assets/javascripts/application.js', <<-JS
@@ -202,7 +203,18 @@ file 'app/views/shared/_footer.html.erb', <<-HTML
       <li> <a href="#"><i class="fa fa-twitter"></i></a> </li>
     </ul>
   </div>
-</div>HTML
+</div>
+HTML
+
+file 'app/views/pages/home.html.erb', <<-HTML
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://picsum.photos/200/300/?random');">
+  <div class="banner-content">
+    <h1>My Company</h1>
+    <p>Welcome on our web site</p>
+    <!-- <a class="btn btn-primary btn-lg">Start now</a> -->
+  </div>
+</div>
+HTML
 
 # Generators
 ########################################
