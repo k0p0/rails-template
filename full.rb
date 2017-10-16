@@ -97,9 +97,7 @@ file 'app/views/layouts/application.html.erb', <<-HTML
     <%= render 'shared/flashes' %>
     <div class="container">
       <div class="row">
-	      <div class="col-xs-12 col-sm-6 col-md-3">
           <%= yield %>
-         </div>
       </div>
     </div>
     <%= javascript_include_tag 'application' %>
@@ -211,7 +209,7 @@ file 'app/views/pages/home.html.erb', <<-HTML
   <div class="banner-content">
     <h1>My Company</h1>
     <p>Welcome on our web site</p>
-    <!-- <a class="btn btn-primary btn-lg">Start now</a> -->
+    <a class="btn btn-primary btn-lg">Start now</a> 
   </div>
 </div>
 HTML
