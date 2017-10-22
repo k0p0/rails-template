@@ -22,10 +22,10 @@ gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'
-gem 'webpacker', '~> 3.0'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem 'webpacker', '~> 3.0'
 
 group :development, :test do
   gem 'pry-byebug'
