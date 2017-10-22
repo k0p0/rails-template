@@ -1,4 +1,8 @@
 
+# prerequisites
+MySQL Server | PostgreSQL Server installed
+Rails / Ruby / git  ... installed
+
 # install
 
 ```bash
@@ -6,3 +10,5 @@ $ rails new myAppName -T --database=(postgresql|mysql) -m https://raw.githubuser
 $ bundle install
 ```
 
+# Note
+comment usued gem (mysql2 / pgsql) in Gemfile according to your DBMS
