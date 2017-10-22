@@ -1,7 +1,7 @@
 
 # prerequisites
-MySQL Server | PostgreSQL Server installed
-Rails / Ruby / git  ... installed
+
+MySQL Server | PostgreSQL Server AND Rails & Ruby & git ... installed
 
 # install
 
