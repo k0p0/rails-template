@@ -22,7 +22,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'
-
+gem 'webpacker', '~> 3.0'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
@@ -89,7 +89,7 @@ file 'app/views/layouts/application.html.erb', <<-HTML
 
     <title>MY COMPANY</title>
     <%= csrf_meta_tags %>
-    <%#= action_cable_meta_tag %>
+    <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
@@ -203,6 +203,17 @@ file 'app/views/shared/_footer.html.erb', <<-HTML
   </div>
 </div>
 HTML
+ 
+file 'app/views/pages/home.html.erb', <<-HTML
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://picsum.photos/200/300/?random');">
+  <div class="banner-content">
+    <h1>My Company</h1>
+    <p>Welcome on our web site</p>
+    <a class="btn btn-primary btn-lg">Start now</a> 
+  </div>
+</div>
+HTML
+
 
 # Generators
 ########################################
@@ -241,19 +252,6 @@ tmp/*
 .DS_Store
 public/assets
 TXT
-
-  # Update homePage
-  run 'rm app/views/pagess/home.html.erb'
-  file 'app/views/pages/home.html.erb', <<-HTML
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://picsum.photos/200/300/?random');">
-  <div class="banner-content">
-    <h1>My Company</h1>
-    <p>Welcome on our web site</p>
-    <a class="btn btn-primary btn-lg">Start now</a> 
-  </div>
-</div>
-HTML
-
   
   # Devise install + user
   ########################################
