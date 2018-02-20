@@ -15,5 +15,8 @@ $ rails assets:precompile
 comment usued gem (mysql2 / pgsql) in Gemfile according to your DBMS
 
 for production envivronment : 
-change config.serve_static_assets = false to true in config/environments/production.rb
-add a secret_key_base in config/secrets.yml (you can generate one with `bundle exec rake secret`
+change `config.serve_static_assets = false` to `true` in `config/environments/production.rb`
+add a `secret_key_base` in `config/secrets.yml` (you can generate one with `bundle exec rake secret`)
+
+# Run 
+Go in your app docroot and `nohup rails server -e production &`
