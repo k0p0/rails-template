@@ -66,8 +66,8 @@ run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/home.j
 
 run 'rm app/assets/javascripts/application.js'
 file 'app/assets/javascripts/application.js', <<-JS
-#//= require jquery
-#//= require jquery_ujs
+;//= require jquery
+;//= require jquery_ujs
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require_tree .
