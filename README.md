@@ -5,14 +5,20 @@ MySQL Server | PostgreSQL Server AND Rails & Ruby & git ... installed
 
 # install
 
+choose postgresql or mysql 
 ```bash
 $ rails new myAppName -T --database=(postgresql|mysql) -m https://raw.githubusercontent.com/k0p0/rails-template/master/full.rb
+$ cd myAppName
 $ bundle install
 $ rails assets:precompile
+$ rails webpacker:install
 ```
 
 # Note
 comment usued gem (mysql2 / pgsql) in Gemfile according to your DBMS
+
+install yarn
+https://yarnpkg.com/lang/en/docs/install/
 
 for production envivronment : 
 change `config.serve_static_assets = false` to `true` in `config/environments/production.rb`
