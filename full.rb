@@ -17,11 +17,9 @@ gem 'rails', '#{Rails.version}'
 gem 'redis'
 gem 'bootsnap'
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3'
 gem 'bootstrap-datepicker-rails'
-gem 'font-awesome-sass', '~> 4.7.0'
-#gem 'jquery-rails'
-#gem 'jquery-fileupload-rails'
+gem 'font-awesome-sass', '~> 5.0.9'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
@@ -34,6 +32,7 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'dotenv-rails'
 end
 RUBY
 
@@ -60,16 +59,45 @@ run 'rm -rf vendor'
 run 'curl -L https://github.com/k0p0/rails-stylesheets/archive/master.zip > stylesheets.zip'
 run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-stylesheets-master app/assets/stylesheets'
 
+inject_into_file 'app/assets/stylesheets/config/_bootstrap_variables.scss', before: '// Override other variables below!' do
+"
+// Patch to make simple_form compatible with bootstrap 3
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: $red;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid,
+.was-validated .custom-select:invalid,
+.custom-select.is-invalid {
+  border-color: $red;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.was-validated .form-control:invalid ~ .invalid-tooltip,
+.form-control.is-invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-tooltip,
+.was-validated .custom-select:invalid ~ .invalid-feedback,
+.was-validated .custom-select:invalid ~ .invalid-tooltip,
+.custom-select.is-invalid ~ .invalid-feedback,
+.custom-select.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+
+"
+end
+
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/logo.png > app/assets/images/logo.png'
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/profil.png > app/assets/images/profil.png'
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/home.jpg > app/assets/images/home.jpg'
 
 run 'rm app/assets/javascripts/application.js'
 file 'app/assets/javascripts/application.js', <<-JS
-;//= require jquery
-;//= require jquery_ujs
 //= require rails-ujs
-//= require bootstrap-sprockets
 //= require_tree .
 JS
 
@@ -224,6 +252,7 @@ generators = <<-RUBY
 config.generators do |generate|
       generate.assets false
       generate.helper false
+      generate.test_framework  :test_unit, fixture: false
     end
 RUBY
 
@@ -235,9 +264,9 @@ environment generators
 after_bundle do
   # Generators: db + simple form + pages controller
   ########################################
-  rake 'db:drop db:create db:migrate'
+  rails_command 'db:drop db:create db:migrate'
   generate('simple_form:install', '--bootstrap')
-  generate(:controller, 'pages', 'home', '--skip-routes')
+  generate(:controller, 'pages', 'home', '--skip-routes', '--no-test-framework')
 
   # Routes
   ########################################
@@ -259,7 +288,9 @@ public/assets
 public/packs
 public/packs-test
 node_modules
+yarn-error.log
 .byebug_history
+.env*
 TXT
   
   # Devise install + user
@@ -279,7 +310,7 @@ RUBY
 
   # migrate + devise views
   ########################################
-  rake 'db:migrate'
+  rails_command 'db:migrate'
   generate('devise:views')
 
   # Pages Controller
@@ -320,11 +351,54 @@ environment.plugins.set('Provide',
 
 JS
   end
-
-  # Figaro
+  # Dotenv
   ########################################
-  run 'bundle binstubs figaro'
-  run 'figaro install'
+  run 'touch .env'
+  # Rubocop
+  ########################################
+   file '.rubocop.yml', <<-TXT
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+    - 'script/**/*'
+    - 'support/**/*'
+    - 'tmp/**/*'
+    - 'test/**/*'
+
+ConditionalAssignment:
+  Enabled: false
+StringLiterals:
+  Enabled: false
+RedundantReturn:
+  Enabled: false
+Documentation:
+  Enabled: false
+WordArray:
+  Enabled: false
+AbcSize:
+  Enabled: false
+MutableConstant:
+  Enabled: false
+SignalException:
+  Enabled: false
+Casecmp:
+  Enabled: false
+CyclomaticComplexity:
+  Enabled: false
+MethodMissing:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+LineLength:
+  Max: 120
+Style/EmptyMethod:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
+TXT
 
   # Git
   ########################################
