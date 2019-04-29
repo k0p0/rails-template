@@ -10,17 +10,15 @@ ruby '#{RUBY_VERSION}'
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
-gem 'pg'
+gem 'pg', '~> 0.21'
 #gem 'mysql2' 
 gem 'puma'
 gem 'rails', '#{Rails.version}'
 gem 'redis'
-gem 'bootsnap'
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass', '~> 3.3'
 gem 'bootstrap-datepicker-rails'
-gem 'font-awesome-sass', '~> 5.0.9'
-gem 'sass-rails'
+gem 'font-awesome-sass', '~> 5.6.1'
+gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
@@ -46,51 +44,12 @@ file 'Procfile', <<-YAML
 web: bundle exec puma -C config/puma.rb
 YAML
 
-# Spring conf file
-########################################
-inject_into_file 'config/spring.rb', before: ').each { |path| Spring.watch(path) }' do
-  '  config/application.yml\n'
-end
-
 # Assets
 ########################################
 run 'rm -rf app/assets/stylesheets'
 run 'rm -rf vendor'
 run 'curl -L https://github.com/k0p0/rails-stylesheets/archive/master.zip > stylesheets.zip'
 run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-stylesheets-master app/assets/stylesheets'
-
-inject_into_file 'app/assets/stylesheets/config/_bootstrap_variables.scss', before: '// Override other variables below!' do
-"
-// Patch to make simple_form compatible with bootstrap 3
-.invalid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 80%;
-  color: $red;
-}
-
-.was-validated .form-control:invalid,
-.form-control.is-invalid,
-.was-validated .custom-select:invalid,
-.custom-select.is-invalid {
-  border-color: $red;
-}
-
-.was-validated .form-control:invalid ~ .invalid-feedback,
-.was-validated .form-control:invalid ~ .invalid-tooltip,
-.form-control.is-invalid ~ .invalid-feedback,
-.form-control.is-invalid ~ .invalid-tooltip,
-.was-validated .custom-select:invalid ~ .invalid-feedback,
-.was-validated .custom-select:invalid ~ .invalid-tooltip,
-.custom-select.is-invalid ~ .invalid-feedback,
-.custom-select.is-invalid ~ .invalid-tooltip {
-  display: block;
-}
-
-"
-end
-
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/logo.png > app/assets/images/logo.png'
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/profil.png > app/assets/images/profil.png'
 run 'curl -L https://raw.githubusercontent.com/k0p0/rails-template/master/home.jpg > app/assets/images/home.jpg'
@@ -333,19 +292,24 @@ RUBY
     # Webpacker / Yarn
   ########################################
   run 'rm app/javascript/packs/application.js'
-  run 'yarn add jquery bootstrap@3'
+  run 'yarn add jquery bootstrap'
   file 'app/javascript/packs/application.js', <<-JS
 import "bootstrap";
 JS
 
   inject_into_file 'config/webpack/environment.js', before: 'module.exports' do
 <<-JS
-// Bootstrap 3 has a dependency over jQuery:
 const webpack = require('webpack')
-environment.plugins.set('Provide',
+
+// Preventing Babel from transpiling NodeModules packages
+environment.loaders.delete('nodeModules');
+
+// Bootstrap 4 has a dependency over jQuery & Popper.js:
+environment.plugins.prepend('Provide',
   new webpack.ProvidePlugin({
     $: 'jquery',
-    jQuery: 'jquery'
+    jQuery: 'jquery',
+    Popper: ['popper.js', 'default']
   })
 )
 
@@ -388,7 +352,9 @@ Casecmp:
   Enabled: false
 CyclomaticComplexity:
   Enabled: false
-MethodMissing:
+MissingRespondToMissing:
+  Enabled: false
+MethodMissingSuper:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
