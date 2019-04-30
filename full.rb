@@ -77,8 +77,10 @@ file 'app/views/layouts/application.html.erb', <<-HTML
 <html>
   <head>
     <meta charset="UTF-8">
+    <!-- Add these line for detecting device width -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+</head>
 
     <title>MY COMPANY</title>
     <%= csrf_meta_tags %>
