@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 ruby '#{RUBY_VERSION}'
 
 gem 'devise'
-gem 'figaro'
+#gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 #gem 'mysql2'
@@ -22,6 +22,9 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+
+# if Rails.version >= 5.2
+gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'pry-byebug'
