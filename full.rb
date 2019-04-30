@@ -11,7 +11,7 @@ gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
-#gem 'mysql2' 
+#gem 'mysql2'
 gem 'puma'
 gem 'rails', '#{Rails.version}'
 gem 'redis'
@@ -193,13 +193,13 @@ file 'app/views/shared/_footer.html.erb', <<-HTML
   </div>
 </div>
 HTML
- 
+
 file 'app/views/pages/home.html.erb', <<-HTML
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('/assets/home.jpg');">
   <div class="banner-content">
     <h1>My Company</h1>
     <p>Welcome on our web site</p>
-    <a class="btn btn-primary btn-lg">Start now</a> 
+    <a class="btn btn-primary btn-lg">Start now</a>
   </div>
 </div>
 HTML
@@ -251,7 +251,7 @@ yarn-error.log
 .byebug_history
 .env*
 TXT
-  
+
   # Devise install + user
   ########################################
   generate('devise:install')
@@ -292,7 +292,7 @@ RUBY
     # Webpacker / Yarn
   ########################################
   run 'rm app/javascript/packs/application.js'
-  run 'yarn add jquery bootstrap'
+  run 'yarn add popper.js jquery bootstrap'
   file 'app/javascript/packs/application.js', <<-JS
 import "bootstrap";
 JS
