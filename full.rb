@@ -16,12 +16,13 @@ gem 'puma'
 gem 'rails', '#{Rails.version}'
 gem 'redis'
 gem 'autoprefixer-rails'
-gem 'bootstrap-datepicker-rails'
+#gem 'bootstrap-datepicker-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'sassc-rails'
-gem 'simple_form', '~> 3.2'
+gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+
 
 # if Rails.version >= 5.2
 gem 'bootsnap', require: false
