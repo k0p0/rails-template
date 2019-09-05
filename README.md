@@ -3,6 +3,11 @@
 
 MySQL Server | PostgreSQL Server AND Rails & Ruby & git ... installed
 
+Ensure you have bootstrap and it's dependencies
+
+yarn add bootstrap
+yarn add jquery popper.js
+
 # install
 
 choose postgresql or mysql 
