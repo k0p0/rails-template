@@ -17,7 +17,7 @@ gem 'rails', '#{Rails.version}'
 gem 'redis'
 gem 'autoprefixer-rails'
 #gem 'bootstrap-datepicker-rails'
-gem 'font-awesome-sass', '~> 5.6.1'
+gem 'font-awesome-sass', '~> 5.9.0'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
@@ -90,11 +90,7 @@ file 'app/views/layouts/application.html.erb', <<-HTML
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="container">
-      <div class="row">
           <%= yield %>
-      </div>
-    </div>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <%= render 'shared/footer' %>
@@ -141,17 +137,17 @@ file 'app/views/shared/_navbar.html.erb', <<-HTML
           <ul class="dropdown-menu dropdown-menu-right navbar-classic-dropdown-menu">
             <li>
               <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                <i class="far fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
             <li>
               <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+                <i class="fas fa-home"></i>  <%= t(".profile", default: "Home") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fas fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
           </ul>
@@ -166,7 +162,7 @@ file 'app/views/shared/_navbar.html.erb', <<-HTML
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-classic-item hidden-md hidden-lg">
     <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <i class="fas fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-classic-dropdown-menu">
         <li><a href="#">Some mobile link</a></li>
         <li><a href="#">Other one</a></li>
@@ -181,20 +177,22 @@ file 'app/views/shared/_footer.html.erb', <<-HTML
 <div class="footer">
   <div class="footer-links">
     <ul class="list-inline text-center">
-      <li> <%= Date.today.year %>  <a href="#"><i class="fa fa-copyright"></i>  My Company</a></li>
-      <li>  |  </li>
-      <li> <a href="#"><i class="fa fa-bank"></i>  Legal terms</a> </li>
-      <li>  |  </li>
-      <li> <a href="#"><i class="fa fa-lock"></i>  Access</a> </li>
-      <li>  |  </li>
-      <li> <a href="tel:+33000000000"><i class="fa fa-phone"></i>  +33000000000</a> </li>
-      <li>  |  </li>
-      <li> <a href="mailto:contact@abc.xyz"><i class="fa fa-envelope-o"></i>  contact@abc.xyz</a> </li>
-      <li>  |  </li>
-      <li> <a href="#"><i class="fa fa-github"></i></a> </li>
-      <li> <a href="#"><i class="fa fa-linkedin"></i></a> </li>
-      <li> <a href="#"><i class="fa fa-facebook"></i></a> </li>
-      <li> <a href="#"><i class="fa fa-twitter"></i></a> </li>
+      <li class="list-inline-item"> <%= Date.today.year %>  <a href="#"><i class="far fa-copyright"></i>  My Company</a></li>
+      <li class="list-inline-item">  |  </li>
+      <li class="list-inline-item"> <a href="#"><i class="fas fa-university"></i>  Legal terms</a> </li>
+      <li class="list-inline-item">  |  </li>
+      <li class="list-inline-item"> <a href="#"><i class="fas fa-user-lock"></i>  Access</a> </li>
+      <li class="list-inline-item">  |  </li>
+      <li class="list-inline-item"> <a href="tel:+33000000000"><i class="fas fa-phone"></i>  +33000000000</a> </li>
+      <li class="list-inline-item">  |  </li>
+      <li class="list-inline-item"> <a href="mailto:contact@abc.xyz"><i class="fas fa-envelope"></i>  contact@abc.xyz</a> </li>
+      <li class="list-inline-item">  |  </li>
+      <li class="list-inline-item"> <a href="#"><i class="fas fa-map-marked-alt"></i>  Paris</a> </li>
+      <li class="list-inline-item">  |  </li>
+      <li class="list-inline-item"> <a href="#"><i class="fab fa-github"></i></a> </li>
+      <li class="list-inline-item"> <a href="#"><i class="fab fa-linkedin-in"></i></a> </li>
+      <li class="list-inline-item"> <a href="#"><i class="fab fa-facebook-f"></i></a> </li>
+      <li class="list-inline-item"> <a href="#"><i class="fab fa-twitter"></i></a> </li>
     </ul>
   </div>
 </div>
