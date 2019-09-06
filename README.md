@@ -5,13 +5,16 @@ MySQL Server | PostgreSQL Server AND Rails & Ruby & git ... installed
 
 Ensure you have bootstrap and it's dependencies
 
-```yarn add bootstrap
-yarn add jquery popper.js```
+```
+yarn add bootstrap
+yarn add jquery popper.js
+```
 
 # install
 
 choose postgresql or mysql 
-```bash
+```
+bash
 $ rails new myAppName -T --database=(postgresql|mysql) --webpack -m https://raw.githubusercontent.com/k0p0/rails-template/master/full.rb
 $ cd myAppName
 $ bundle install
